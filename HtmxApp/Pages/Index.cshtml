@@ -1,0 +1,24 @@
+@page
+@model HtmxApp.Pages.IndexModel
+
+
+@{
+    ViewData["Tle"] = "htmx Application";
+}
+
+<html>
+<head>
+    <script src='@Url.Content("~/scripts/htmx.js")' type="text/javascript"></script>
+</head>
+<body>
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <div id="countDiv">
+        @await Html.PartialAsync("_CountPartial", Model.Count) <!-- Render the initial partial view -->
+    </div>
+    <button hx-get='@Url.Page("Index", "Increment")' hx-target="#countDiv">Increment</button>
+</div>
+</body>
+
+</html>
