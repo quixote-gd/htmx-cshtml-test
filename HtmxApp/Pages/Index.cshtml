@@ -3,12 +3,13 @@
 
 
 @{
-    ViewData["Tle"] = "htmx Application";
+    ViewData["Title"] = "htmx Application";
 }
 
 <html>
 <head>
     <script src='@Url.Content("~/scripts/htmx.js")' type="text/javascript"></script>
+
 </head>
 <body>
 <h1>@ViewData["Title"]</h1>
@@ -18,6 +19,16 @@
         @await Html.PartialAsync("_CountPartial", Model.Count) <!-- Render the initial partial view -->
     </div>
     <button hx-get='@Url.Page("Index", "Increment")' hx-target="#countDiv">Increment</button>
+</div>
+
+<div>
+    <form id="searchform" hx-get='@Url.Page("Index", "Search")' hx-params="userName,email" hx-trigger="submit" hx-target="#resultsbox">
+        <input type="text" id="userName" name="userName" placeholder="a part of users email">
+        <input type="text" id="email" name="email" placeholder="a part of users name">
+        <input type="submit" value="look up" form="searchform">
+    </form>
+
+    <div id="resultsbox"></div>
 </div>
 </body>
 

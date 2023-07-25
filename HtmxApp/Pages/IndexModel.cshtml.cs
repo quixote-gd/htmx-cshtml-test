@@ -27,5 +27,10 @@ public class IndexModel : PageModel
             Console.WriteLine("OnGetIncrement executed | Count: " + Count);
             return Partial("_CountPartial", Count);
         }
+
+        public IActionResult OnGetSearch(string userName, string email)
+        {
+            return Partial("_SearchPartial", userName);
+        }
 }
 
