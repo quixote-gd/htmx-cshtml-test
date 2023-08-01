@@ -24,7 +24,11 @@
 <div>
     <form id="searchform" hx-get='@Url.Page("Index", "Search")' hx-params="userName,email" hx-trigger="submit" hx-target="#resultsbox">
         <input type="text" id="userName" name="userName" placeholder="a part of users email">
-        <input type="text" id="email" name="email" placeholder="a part of users name">
+         <div hx-target="this" hx-swap="outerHTML">
+            <label>Email Address</label>
+            <input name="email" hx-post='@Url.Action("Index", "ValidateEmail")' hx-indicator="#ind">
+            <img id="ind" src="/img/bars.svg" class="htmx-indicator"/>
+        </div>
         <input type="submit" value="look up" form="searchform">
     </form>
 
